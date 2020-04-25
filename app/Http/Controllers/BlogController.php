@@ -9,7 +9,7 @@ class BlogController extends Controller
 {
     public function index(){
         $blogs = Blog::all();
-        return view('web.blogs.index', compact('blogs'));
+        return view('web.blogs.index')->with(['blogs' => $blogs]);
     }
 
     public function create(){
@@ -31,5 +31,29 @@ class BlogController extends Controller
         // $blog->body = $request->body;
         // $blog->save();
         return redirect('/blogs');
+    }
+
+    public function show($id){
+        $blog = Blog::findOrFail($id);
+        return view('web.blogs.show')->with(['blog' => $blog]);
+    }
+
+    public function edit($id){
+        $blog = Blog::findOrFail($id);
+        return view('web.blogs.edit')->with(['blog' => $blog]);
+    }
+
+
+    public function update(Request $request, $id){
+        $input = $request->all();
+        $blog = Blog::findOrFail($id);
+        $blog->update($input);
+        return redirect('blogs');
+    }
+
+    public function delete($id){
+        $blog = Blog::findOrFail($id);
+        $blog->delete();
+        return redirect('blogs');
     }
 }

@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'BlogController@index');
 
 Auth::routes();
 
@@ -24,3 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/blogs', 'BlogController@index')->name('blogs');
 Route::get('/blogs/create', 'BlogController@create')->name('blogs.create');
 Route::post('/blogs/store', 'BlogController@store')->name('blogs.store');
+Route::get('blogs/{id}', 'BlogController@show')->name('blogs.show');
+Route::get('blogs/{id}/edit', 'BlogController@edit')->name('blogs.edit');
+Route::patch('blogs/{id}/update', 'BlogController@update')->name('blogs.update');
+Route::delete('blogs/{id}/delete', 'BlogController@delete')->name('blogs.delete');
