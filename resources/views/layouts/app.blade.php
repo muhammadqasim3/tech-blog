@@ -17,7 +17,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">--}}
+{{--    Instead of using multiple css links use 1 link from laravel mix --}}
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}">
 </head>
 <body>
     <div id="app">
