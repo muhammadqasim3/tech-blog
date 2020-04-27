@@ -36,8 +36,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li><a href="{{ route('blogs.create') }}" class="nav-link">Create</a></li>
-                        <li><a href="{{ route('blogs.trash') }}" class="nav-link">Trashed</a></li>
+                        <li><a href="{{ route('admin') }}" class="nav-link">Admin</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
