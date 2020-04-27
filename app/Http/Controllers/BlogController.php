@@ -62,4 +62,16 @@ class BlogController extends Controller
         return view('web.blogs.trash')->with(['trashedBlogs' => $trashedBlogs]);
     }
 
+    public function restore($id){
+        $restoredBlog = Blog::onlyTrashed()->findOrFail($id);
+        $restoredBlog->restore($restoredBlog);
+        return redirect('blogs');
+    }
+
+    public function permanentDelete($id){
+        $permanentDeleteBlog = Blog::onlyTrashed()->findOrFail($id);
+        $permanentDeleteBlog->forceDelete($permanentDeleteBlog);
+        return redirect('blogs/trash');
+    }
+
 }

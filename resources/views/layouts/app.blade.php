@@ -37,7 +37,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li><a href="{{ route('blogs.create') }}" class="nav-link">Create</a></li>
-{{--                        <li><a href="{{ route('blogs.edit') }}" class="nav-link">Edit</a></li>--}}
+                        <li><a href="{{ route('blogs.trash') }}" class="nav-link">Trashed</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
