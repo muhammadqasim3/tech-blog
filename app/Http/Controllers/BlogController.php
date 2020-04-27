@@ -56,4 +56,10 @@ class BlogController extends Controller
         $blog->delete();
         return redirect('blogs');
     }
+
+    public function trash(){
+        $trashedBlogs = Blog::onlyTrashed()->get();
+        return view('web.blogs.trash')->with(['trashedBlogs' => $trashedBlogs]);
+    }
+
 }
