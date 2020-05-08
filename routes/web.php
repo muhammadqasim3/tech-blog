@@ -34,5 +34,8 @@ Route::patch('blogs/{id}/update', 'BlogController@update')->name('blogs.update')
 Route::delete('blogs/{id}/delete', 'BlogController@delete')->name('blogs.delete');
 
 
+//Resource Controller 
+
 //Admin Routes
 Route::get('/admin', 'AdminController@index')->name('admin')->middleware(['admin', 'auth']);
+
