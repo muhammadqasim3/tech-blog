@@ -17,6 +17,8 @@ Route::get('/', 'BlogController@index');
 
 Auth::routes();
 
+
+//===============================================================WEBSITE ROUTES============================================================
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/blogs', 'BlogController@index')->name('blogs');
@@ -34,8 +36,10 @@ Route::patch('blogs/{id}/update', 'BlogController@update')->name('blogs.update')
 Route::delete('blogs/{id}/delete', 'BlogController@delete')->name('blogs.delete');
 
 
-//Resource Controller 
+//Resource Controllers
+Route::resource('categories', 'CategoryController')->name('', 'categories');
 
-//Admin Routes
+
+//===============================================================ADMIN ROUTES============================================================
 Route::get('/admin', 'AdminController@index')->name('admin')->middleware(['admin', 'auth']);
 
