@@ -8,9 +8,14 @@
             <div class="jumbotron">
                 <div class="col-md-12">
                     <h1>{{ $blog->title }}</h1>
+{{--                    {{ dd($categories) }}--}}
+                    <span class="font-weight-bold">Categories: </span>
+                    @foreach($categories as $category)
+                        <span class="mx-1">{{ $category['name'] }}</span>
+                    @endforeach
                 </div>
 {{--                    Buttons --}}
-                    <div class="col-md-12">
+                    <div class="col-md-12 mt-2">
                         <div class="btn-group">
                             <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-primary mr-3">Edit</a>
                             <form action="{{ route('blogs.delete', $blog->id) }}" method="post">

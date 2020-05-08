@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
+use App\Category;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -13,7 +14,8 @@ class BlogController extends Controller
     }
 
     public function create(){
-        return view('web.blogs.create');
+        $categories = Category::all();
+        return view('web.blogs.create')->with(['categories' => $categories]);
     }
 
     public function store(Request $request){
@@ -24,6 +26,12 @@ class BlogController extends Controller
         // New Method 
         $input = $request->all();
         $blog = Blog::create($input);
+//      Once blog is created, make it sync with categories
+        if($request->category_id) {
+            $blog->category()->sync($request->category_id);
+        }
+
+
 
         // Old Method
         // $blog = new Blog();
@@ -35,12 +43,14 @@ class BlogController extends Controller
 
     public function show($id){
         $blog = Blog::findOrFail($id);
-        return view('web.blogs.show')->with(['blog' => $blog]);
+        $category = $blog->category->toArray();
+        return view('web.blogs.show')->with(['blog' => $blog, 'categories' => $category]);
     }
 
     public function edit($id){
         $blog = Blog::findOrFail($id);
-        return view('web.blogs.edit')->with(['blog' => $blog]);
+        $categories = Category::all();
+        return view('web.blogs.edit')->with(['blog' => $blog, 'categories' => $categories]);
     }
 
 
@@ -48,6 +58,11 @@ class BlogController extends Controller
         $input = $request->all();
         $blog = Blog::findOrFail($id);
         $blog->update($input);
+        //      Once blog is updated, make it sync with categories
+        if($request->category_id) {
+            $blog->category()->sync($request->category_id);
+        }
+
         return redirect('blogs');
     }
 

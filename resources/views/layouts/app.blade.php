@@ -35,8 +35,14 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li><a href="{{ route('admin') }}" class="nav-link">Admin</a></li>
+                    <ul class="navbar-nav">
+                        <li><a href="{{ route('admin') }}" class="nav-link">Admin Dashboard</a></li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li><a href="{{ route('blogs') }}" class="nav-link">Blogs</a></li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li><a href="{{ route('categories.index') }}" class="nav-link">Categories</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
