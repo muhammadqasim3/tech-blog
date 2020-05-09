@@ -18,6 +18,16 @@
                     </form>
                 </div>
             </div>
+
+            <div id="line"><hr></div>
+            <div class="col-md-12 mt-4">
+                @foreach($category->blog as $blog)
+                    <p>{{ $blog->id }}</p>
+                    <h3><a href="{{ route('blogs.show', $blog->id) }}">{{ $blog->title }}</a></h3>
+                    <p>{{ $blog->body }}</p>
+                @endforeach
+            </div>
+
         </div>
     </div>
 @endsection

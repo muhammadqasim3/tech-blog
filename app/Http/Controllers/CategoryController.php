@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Blog;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -52,9 +53,11 @@ class CategoryController extends Controller
      */
     public function show($slug)
     {
+
+        $blogs = Blog::all();
 //        $category = Category::FindOrFail($id);
         $category = Category::where('slug', $slug)->first();
-        return view('web.categories.show')->with(['category' => $category]);
+        return view('web.categories.show')->with(['category' => $category, 'blogs' => $blogs]);
     }
 
     /**

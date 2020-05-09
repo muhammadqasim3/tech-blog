@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class BlogController extends Controller
 {
     public function index(){
-        $blogs = Blog::all();
+        $blogs = Blog::latest()->get();
         return view('web.blogs.index')->with(['blogs' => $blogs]);
     }
 
@@ -50,7 +50,16 @@ class BlogController extends Controller
     public function edit($id){
         $blog = Blog::findOrFail($id);
         $categories = Category::all();
-        return view('web.blogs.edit')->with(['blog' => $blog, 'categories' => $categories]);
+//        Checked boxes
+        $selected_categories = [];
+        foreach($blog->category as $category){
+            $selected_categories[] = $category->id -1;
+        }
+
+        $filtered_categories = array_except($categories, $selected_categories);
+        return view('web.blogs.edit')->with(['blog' => $blog,
+                                                    'categories' => $categories,
+                                                    'filtered_categories' => $filtered_categories]);
     }
 
 

@@ -15,7 +15,9 @@ class Category extends Model
 
     protected $fillable = ['name', 'slug'];
 
+    protected $with =  ['blog'];
+
     public function blog(){
-        return $this->hasMany(Blog::class);
+        return $this->belongsToMany(Blog::class);
     }
 }

@@ -17,6 +17,7 @@ class Blog extends Model
         'body'
     ];
 
+//    protected $with =  ['category'];
 
     public function category() {
        return $this->belongsToMany(Category::class);
