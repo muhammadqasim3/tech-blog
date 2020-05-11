@@ -9,7 +9,7 @@
 </div>
 
 <div class="col-md-12">
-    <form action="{{ route('blogs.store') }}" method="post">
+    <form action="{{ route('blogs.store') }}" method="post" enctype="multipart/form-data">
         <div class="form-group mt-3">
             <label for="title">Title</label>
             <input type="text" name="title" class="form-control" required>
@@ -27,6 +27,12 @@
             <label for="body">Body</label>
             <textarea type="text" name="body" class="form-control" rows="10" required></textarea>
         </div>
+        
+        <div class="form-group">
+            <label for="featured_image">Featured Image</label>
+            <input type="file" name="featured_image" class="form-control py-1">
+        </div>
+        
         <hr>
         <button class="btn btn-primary" type="submit">Create</button>
         @csrf

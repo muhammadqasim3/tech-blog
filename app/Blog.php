@@ -14,7 +14,8 @@ class Blog extends Model
 
     protected $fillable = [
         'title',
-        'body'
+        'body',
+        'featured_image'
     ];
 
 //    protected $with =  ['category'];

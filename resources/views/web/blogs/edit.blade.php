@@ -9,7 +9,7 @@
         </div>
 
         <div class="col-md-12">
-            <form action="{{ route('blogs.update', $blog->id) }}" method="post">
+            <form action="{{ route('blogs.update', $blog->id) }}" method="post"  enctype="multipart/form-data">
                 {{ method_field('patch') }}
                 <div class="form-group mt-3">
                     <label for="title">Title</label>
@@ -37,6 +37,12 @@
                     <label for="body">Body</label>
                     <textarea type="text" name="body" class="form-control" required>{{ $blog->body }}</textarea>
                 </div>
+
+                <div class="form-group">
+                    <label for="featured_image">Featured Image</label>
+                    <input type="file" name="featured_image" class="form-control py-1">
+                </div>
+
                 <hr>
                 <button class="btn btn-primary" type="submit">Update</button>
                 @csrf

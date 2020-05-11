@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Blog;
 use App\Category;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
@@ -19,12 +21,20 @@ class BlogController extends Controller
     }
 
     public function store(Request $request){
-        $request->validate([
+
+        $validatedData = $request->validate([
             'title' => 'required',
             'body' => 'required'
         ]);
+
         // New Method 
         $input = $request->all();
+//        image upload
+        if($request->hasFile('featured_image')){
+           $filename = $request->file('featured_image');
+           $input['featured_image'] = Storage::putFile('public/images', $filename);
+        }
+
         $blog = Blog::create($input);
 //      Once blog is created, make it sync with categories
         if($request->category_id) {
