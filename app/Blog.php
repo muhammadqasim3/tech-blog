@@ -18,9 +18,14 @@ class Blog extends Model
         'featured_image'
     ];
 
+    protected $appends = [
+        'image_url'
+    ];
+
 //    protected $with =  ['category'];
 
     public function category() {
        return $this->belongsToMany(Category::class);
     }
+
 }

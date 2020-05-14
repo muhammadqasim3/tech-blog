@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class BlogController extends Controller
 {
     public function index(){
-        $blogs = Blog::latest()->get();
+        $blogs = Blog::all();
         return view('web.blogs.index')->with(['blogs' => $blogs]);
     }
 
@@ -29,11 +29,15 @@ class BlogController extends Controller
 
         // New Method 
         $input = $request->all();
+
 //        image upload
-        if($request->hasFile('featured_image')){
-           $filename = $request->file('featured_image');
-           $input['featured_image'] = Storage::putFile('public/images', $filename);
-        }
+//        if($request->hasFile('featured_image')){
+//           $filename = $request->file('featured_image');
+//           $input['featured_image'] = Storage::putFile('blogs', $filename);
+//        }
+
+
+
 
         $blog = Blog::create($input);
 //      Once blog is created, make it sync with categories
@@ -75,7 +79,22 @@ class BlogController extends Controller
 
     public function update(Request $request, $id){
         $input = $request->all();
-        $blog = Blog::findOrFail($id);
+//        image upload
+//        if($request->hasFile('featured_image')){
+//            $filename = $request->file('featured_image');
+//            $input['featured_image'] = Storage::putFile('blogs', $filename);
+//        }
+
+//        save in images folder inside storage/app/public directory
+            if($request->hasFile('featured_image')) {
+                dd($request->featured_image->getClientOriginalName());
+                $request->featured_image->store('images', 'public');
+                $blog = Blog::find(1)->update(['featured_image' => 'sadfsdf']);
+//                dd($request->featured_image, $request->hasFile('featured_image'), $blog);
+            }
+
+
+//        $blog = Blog::findOrFail($id);
         $blog->update($input);
         //      Once blog is updated, make it sync with categories
         if($request->category_id) {
