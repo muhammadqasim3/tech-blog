@@ -6,12 +6,7 @@
     <div class="container">
         <div class="jumbotron">
             <h1>Edit Blog</h1>
-
-
-            {{--                {{ dd($blog->featured_image) }}--}}
-            <p>{{ $blog->featured_image }}</p>
-            <p>{{ $blog->image_url . 'ds' }}</p>
-            <img src="{{ storage_path(url('storage/app/'.$blog->image_url)) }}" style="width: 100%; height: 100%;">
+             <img src="{{ asset('storage/images/'.$blog->featured_image) }}" style="width: 30%;">
         </div>
 
         <div class="col-md-12">

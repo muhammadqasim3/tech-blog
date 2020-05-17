@@ -18,9 +18,7 @@ class Blog extends Model
         'featured_image'
     ];
 
-    protected $appends = [
-        'image_url'
-    ];
+    protected $appends = [];
 
 //    protected $with =  ['category'];
 

@@ -78,23 +78,19 @@ class BlogController extends Controller
 
 
     public function update(Request $request, $id){
-        $input = $request->all();
-//        image upload
-//        if($request->hasFile('featured_image')){
-//            $filename = $request->file('featured_image');
-//            $input['featured_image'] = Storage::putFile('blogs', $filename);
-//        }
+        $input = $request->except(['featured_image']);
 
-//        save in images folder inside storage/app/public directory
-            if($request->hasFile('featured_image')) {
-                dd($request->featured_image->getClientOriginalName());
-                $request->featured_image->store('images', 'public');
-                $blog = Blog::find(1)->update(['featured_image' => 'sadfsdf']);
-//                dd($request->featured_image, $request->hasFile('featured_image'), $blog);
+        // image upload
+        if($request->hasFile('featured_image')) {
+                $filename = pathinfo($request->featured_image->getClientOriginalName(), PATHINFO_FILENAME);
+                $extension = pathinfo($request->featured_image->getClientOriginalName(), PATHINFO_EXTENSION);
+                $fullFileName = $filename . "_" . time() . ".". $extension;
+                $request->featured_image->storeAs('images', $fullFileName ,'public');  //folder, filename, disk
+                $blog = Blog::findOrFail($id);
+                $blog->update(['featured_image' => $fullFileName]);
             }
 
-
-//        $blog = Blog::findOrFail($id);
+        $blog = Blog::findOrFail($id);
         $blog->update($input);
         //      Once blog is updated, make it sync with categories
         if($request->category_id) {
