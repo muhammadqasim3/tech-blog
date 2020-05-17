@@ -4,9 +4,13 @@
 @section('content')
 
     <div class="container">
-        <div class="jumbotron">
+        <div class="jumbotron" style="padding-top: 70px">
             <h1>Edit Blog</h1>
-             <img src="{{ asset('storage/images/'.$blog->featured_image) }}" style="width: 30%;">
+            @if($blog->featured_image)
+                <img src="{{ asset('storage/blogs/'.$blog->featured_image) }}" style="width: 200px; float: right; margin-top: -110px">
+            @else
+                <img src="{{ asset('images/blog-default.png') }}" style="width: 200px; float: right; margin-top: -110px">
+            @endif
         </div>
 
         <div class="col-md-12">

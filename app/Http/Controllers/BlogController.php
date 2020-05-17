@@ -82,13 +82,19 @@ class BlogController extends Controller
 
         // image upload
         if($request->hasFile('featured_image')) {
-                $filename = pathinfo($request->featured_image->getClientOriginalName(), PATHINFO_FILENAME);
-                $extension = pathinfo($request->featured_image->getClientOriginalName(), PATHINFO_EXTENSION);
-                $fullFileName = $filename . "_" . time() . ".". $extension;
-                $request->featured_image->storeAs('images', $fullFileName ,'public');  //folder, filename, disk
-                $blog = Blog::findOrFail($id);
-                $blog->update(['featured_image' => $fullFileName]);
+            //  remove old image if exists
+            $blog = Blog::findOrFail($id);
+            if ($blog->featured_image){
+                Storage::delete('public/blogs/'. $blog->featured_image);
             }
+            //  saving image name
+            $filename = pathinfo($request->featured_image->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = pathinfo($request->featured_image->getClientOriginalName(), PATHINFO_EXTENSION);
+            $fullFileName = $filename . "_" . time() . ".". $extension;
+            $request->featured_image->storeAs('blogs', $fullFileName ,'public');  //folder, filename, disk
+
+            $blog->update(['featured_image' => $fullFileName]);
+        }
 
         $blog = Blog::findOrFail($id);
         $blog->update($input);
