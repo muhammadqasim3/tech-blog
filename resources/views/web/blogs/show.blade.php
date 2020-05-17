@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
-@include('partials.meta_dynamic')
-
 @section('content')
-
     <div class="container-fluid">
         <article>
 
@@ -29,7 +26,7 @@
                 </div>
 
             <div class="col-md-12">
-                <p>{{ $blog->body }}</p>
+                <p>{!! $blog->body !!} </p>
             </div>
         </article>
     </div>

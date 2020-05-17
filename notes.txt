@@ -1,0 +1,4 @@
+* tinymce
+	- tinymce cdn links
+	- make sure textarea field is not required
+	- that's it

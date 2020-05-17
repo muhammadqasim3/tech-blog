@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+    @include('partials.tinymce')
     <div class="container">
         <div class="jumbotron" style="padding-top: 70px">
             <h1>Edit Blog</h1>

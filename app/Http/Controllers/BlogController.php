@@ -54,6 +54,7 @@ class BlogController extends Controller
 
     public function show($id){
         $blog = Blog::findOrFail($id);
+//        dd($blog, $blog->meta_title, $blog->meta_description);
         $category = $blog->category->toArray();
         return view('web.blogs.show')->with(['blog' => $blog, 'categories' => $category]);
     }
