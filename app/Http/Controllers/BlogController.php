@@ -29,8 +29,9 @@ class BlogController extends Controller
 
         $input = $request->except(['featured_image']);
         // meta stuff
-//        $input['slug'] = Str::slug($input->titlle, '-');
-//        $input['meta_title'] = Str::limit($input->titlle, '60');
+        $input['slug'] = Str::slug($input['title'], '-');
+        $input['meta_title'] = Str::limit($input['title'], '60');
+        $input['meta_description'] = Str::limit($input['body'], '155');
 
         // image upload
         if($request->hasFile('featured_image')) {
