@@ -7,6 +7,7 @@ use App\Category;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -21,23 +22,25 @@ class BlogController extends Controller
     }
 
     public function store(Request $request){
-
         $validatedData = $request->validate([
             'title' => 'required',
             'body' => 'required'
         ]);
 
-        // New Method 
-        $input = $request->all();
+        $input = $request->except(['featured_image']);
+        // meta stuff
+//        $input['slug'] = Str::slug($input->titlle, '-');
+//        $input['meta_title'] = Str::limit($input->titlle, '60');
 
-//        image upload
-//        if($request->hasFile('featured_image')){
-//           $filename = $request->file('featured_image');
-//           $input['featured_image'] = Storage::putFile('blogs', $filename);
-//        }
-
-
-
+        // image upload
+        if($request->hasFile('featured_image')) {
+            //  saving image name
+            $filename = pathinfo($request->featured_image->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = pathinfo($request->featured_image->getClientOriginalName(), PATHINFO_EXTENSION);
+            $fullFileName = $filename . "_" . time() . ".". $extension;
+            $request->featured_image->storeAs('blogs', $fullFileName ,'public');  //folder, filename, disk
+            $input['featured_image'] = $fullFileName;
+        }
 
         $blog = Blog::create($input);
 //      Once blog is created, make it sync with categories
@@ -45,13 +48,6 @@ class BlogController extends Controller
             $blog->category()->sync($request->category_id);
         }
 
-
-
-        // Old Method
-        // $blog = new Blog();
-        // $blog->title = $request->title;
-        // $blog->body = $request->body;
-        // $blog->save();
         return redirect('/blogs');
     }
 

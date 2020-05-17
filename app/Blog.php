@@ -15,7 +15,10 @@ class Blog extends Model
     protected $fillable = [
         'title',
         'body',
-        'featured_image'
+        'featured_image',
+        'slug',
+        'meta_title',
+        'meta_description'
     ];
 
     protected $appends = [];
