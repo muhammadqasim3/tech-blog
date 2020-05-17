@@ -25,9 +25,9 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        accepts two arguments 1st is view and 2nd is callback function
-        View::composer('partials.meta_dynamic', function($view){
-            return $view->with('blog', Blog::all());
+//        accepts two arguments 1st is view/views and 2nd is callback function
+        View::composer(['partials.meta_dynamic', 'partials.nav'], function($view){
+            $view->with('blog', Blog::all());
         });
     }
 }
