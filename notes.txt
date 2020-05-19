@@ -2,3 +2,17 @@
 	- tinymce cdn links
 	- make sure textarea field is not required
 	- that's it
+
+* filemanager
+	- view service providers are used for data binding to views at run time
+
+* speed up composer commands
+	- composer global require hirak/prestissimo
+
+* Laravel Scheduler Cron Jobs
+	- php artisan make:command passwordResetClear
+	- app>console>commands>passwordResetClear handle(){ write your logic here }
+	- app>console>Kernel schedule() // write your command name here and execution time also
+	- php artisan list //check here if your command exists here or not. if it is there then, 
+	- php artisan cronjob signature & name e.g. php artisan minute:clear (this is manual way)
+	- php artisan schedule:run (this will automatically run the scheduled commands)

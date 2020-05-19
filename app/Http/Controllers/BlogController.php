@@ -12,7 +12,8 @@ use Illuminate\Support\Str;
 class BlogController extends Controller
 {
     public function index(){
-        $blogs = Blog::all();
+//        $blogs = Blog::all();
+        $blogs = Blog::where('status', 1)->get();
         return view('web.blogs.index')->with(['blogs' => $blogs]);
     }
 

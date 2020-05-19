@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
+@include('partials.meta_dynamic')
 @section('content')
     <div class="container-fluid">
         <article>
-
             <div class="jumbotron">
                 <div class="col-md-12">
                     <h1>{{ $blog->title }}</h1>

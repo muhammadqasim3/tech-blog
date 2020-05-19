@@ -1,5 +1,5 @@
 @section('meta_title')
-    Static Meta Title
+    Tech Blog
 @endsection
 
 @section('meta_description')

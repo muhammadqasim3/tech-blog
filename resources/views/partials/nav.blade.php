@@ -11,7 +11,7 @@
             <ul class="navbar-nav">
                 <li><a href="{{ route('admin') }}" class="nav-link">Admin Dashboard</a></li>
                 <li><a href="{{ route('categories.index') }}" class="nav-link">Categories</a></li>
-                <li><a href="{{ route('blogs') }}" class="nav-link">Blogs <span class="badge bg-primary text-white">{{ $blog->count() }}</span></a></li>
+                <li><a href="{{ route('blogs') }}" class="nav-link">Blogs <span class="badge bg-primary text-white">{{ $blogs->count() }}</span></a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->

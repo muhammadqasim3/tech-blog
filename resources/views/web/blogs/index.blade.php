@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Tech Blog | Blogs
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">

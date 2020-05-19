@@ -18,7 +18,8 @@ class Blog extends Model
         'featured_image',
         'slug',
         'meta_title',
-        'meta_description'
+        'meta_description',
+        'status'
     ];
 
     protected $appends = [];
