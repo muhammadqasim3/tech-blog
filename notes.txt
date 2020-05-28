@@ -16,3 +16,46 @@
 	- php artisan list //check here if your command exists here or not. if it is there then, 
 	- php artisan cronjob signature & name e.g. php artisan minute:clear (this is manual way)
 	- php artisan schedule:run (this will automatically run the scheduled commands)
+
+* .gitignore
+	- touch .gitignore
+	- add files here
+
+* queue
+	- Laravel queue can be used to decrease processing time and speeds up operations
+	- either use database or redis for this set db creds in .env if not set already.
+	- implements ShouldQueue
+
+* queue: database driver
+	- php artisan queue:table // jobs table created in db 
+	- create the job by php artisan make:job SendEmailJob
+	- SendEmailJob -> handle() //write your logic in handle function
+	  e.g. Mail::to('qasim@gmail.com')->send(new SendMailable());
+	- php artisan queue:work  //Queue worker - to process job we have to run worker
+
+* User Fake Data
+    - php artisan tinker
+    - factory(\App\User::class, 10)->create(); //creates 10 users
+
+* Email Notification
+    - php artisan make:notification Subscription
+    - mailtrap creds in .env
+    - php artisan tinker (Testing for email)
+        * $user = \App\User::first();
+        * $user->notify(new \App\Notifications\Subscription());
+    - controllerMethod -> $user->notify(new \App\Notifications\Subscription()) and that's it.
+
+* Scheduled Emails
+    - php artisan make:notification Subscription
+        - mailtrap creds in .env
+        - php artisan tinker (Testing for email)
+            * $user = \App\User::first();
+            * $user->notify(new \App\Notifications\Subscription());
+        - App/Console/Commands/SendMail handle() function
+            * $users = User::all();
+            * foreach ($users as $user) {
+                $user->notify(new Subscription());
+             }
+        - php artisan schedule:run // this will run the scheduled commands
+
+*

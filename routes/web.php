@@ -42,4 +42,5 @@ Route::resource('categories', 'CategoryController')->name('', 'categories');
 
 //===============================================================ADMIN ROUTES============================================================
 Route::get('/admin', 'AdminController@index')->name('admin')->middleware(['admin', 'auth']);
+Route::get('/admin/blogs', 'AdminController@blogs')->name('admin.blogs')->middleware(['admin', 'auth']);
 
