@@ -41,10 +41,10 @@ Route::resource('categories', 'CategoryController')->name('', 'categories');
 
 
 //===============================================================ADMIN ROUTES============================================================
-Route::middleware(['admin', 'auth'])->group(function () {
-    Route::get('/admin', 'AdminController@index')->name('admin');
+//Route::middleware(['admin', 'auth', 'author'])->group(function () {
+    Route::get('/dashboard', 'AdminController@index')->name('dashboard');
     Route::get('/admin/blogs', 'AdminController@blogs')->name('admin.blogs');
-});
+//});
 
 
 

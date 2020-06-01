@@ -16,10 +16,8 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
 {{--                {{ dd(Auth::user(), Auth::user()->role_id == 1)  }}--}}
-                @if(Auth::user() && Auth::user()->role_id == 1)
-                    <li><a href="{{ route('admin') }}" class="nav-link">Dashboard</a></li>
-                @elseif(Auth::user() && Auth::user()->role_id == 2)
-                    <li><a href="{{ route('admin') }}" class="nav-link">Author Dashboard</a></li>
+                @if(Auth::user())
+                    <li><a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a></li>
                 @endif
                 <!-- Authentication Links -->
                 @guest
