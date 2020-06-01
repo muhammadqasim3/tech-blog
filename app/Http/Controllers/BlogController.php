@@ -6,6 +6,7 @@ use App\Blog;
 use App\Category;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -44,10 +45,12 @@ class BlogController extends Controller
             $input['featured_image'] = $fullFileName;
         }
 
-        $blog = Blog::create($input);
+//        $blog = Blog::create($input);
+//        create blog by current authenticated user
+        $blogByUser = $request->user()->blogs()->create($input);
 //      Once blog is created, make it sync with categories
         if($request->category_id) {
-            $blog->category()->sync($request->category_id);
+            $blogByUser->category()->sync($request->category_id);
         }
 
         return redirect('/blogs');

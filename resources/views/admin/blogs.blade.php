@@ -21,7 +21,7 @@
                         {{ method_field('patch') }}
                         @csrf
                         <input type="checkbox" name="status" value="0" checked style="display: none">
-                        <button class="btn btn-outline-info text-dark btn-xs" type="submit">Save as draft</button>
+                        <button class="btn btn-info text-dark btn-xs font-weight-bold text-white" type="submit">Save as draft</button>
                     </form>
 
                     <h2><a href="{{ route('blogs.show', $blog->id) }}">{{ $blog->title }}</a></h2>
@@ -37,7 +37,7 @@
                         {{ method_field('patch') }}
                         @csrf
                         <input type="checkbox" name="status" value="1" checked style="display: none">
-                        <button class="btn btn-outline-success text-dark btn-xs" type="submit">Publish</button>
+                        <button class="btn btn-success text-dark btn-xs font-weight-bold" type="submit">Publish</button>
                     </form>
 
                     <h2><a href="{{ route('blogs.show', $blog->id) }}">{{ $blog->title }}</a></h2>
