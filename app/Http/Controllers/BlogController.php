@@ -12,6 +12,15 @@ use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        // user can only have access to methods mention in middleware
+        // middleware name, methods applied on
+        $this->middleware('author', ['only' => ['create', 'store', 'edit', 'update']]);
+//        $this->middleware('admin', ['only' => ['delete', 'trash', 'restore', 'permanentDelete']]);
+    }
+
+
     public function index(){
 //        $blogs = Blog::all();
         $blogs = Blog::where('status', 1)->get();

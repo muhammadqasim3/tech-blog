@@ -58,4 +58,7 @@
              }
         - php artisan schedule:run // this will run the scheduled commands
 
-*
+* Middleware
+    - php artisan make:middleware AuthorMiddleware
+    - Register middleware in Kernel.php
+    - apply it on either route level or controller level (inside __construct() method)
