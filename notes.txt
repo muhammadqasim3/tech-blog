@@ -62,3 +62,6 @@
     - php artisan make:middleware AuthorMiddleware
     - Register middleware in Kernel.php
     - apply it on either route level or controller level (inside __construct() method)
+
+* Redirect on Logout
+    - https://stackoverflow.com/questions/43585416/how-to-logout-and-redirect-to-login-page-using-laravel-5-4
