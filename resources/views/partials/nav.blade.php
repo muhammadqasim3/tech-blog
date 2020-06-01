@@ -9,13 +9,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav">
-                <li><a href="{{ route('admin') }}" class="nav-link">Admin Dashboard</a></li>
                 <li><a href="{{ route('categories.index') }}" class="nav-link">Categories</a></li>
                 <li><a href="{{ route('blogs') }}" class="nav-link">Blogs <span class="badge bg-primary text-white">{{ $blogs->count() }}</span></a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+{{--                {{ dd(Auth::user(), Auth::user()->role_id == 1)  }}--}}
+                @if(Auth::user() && Auth::user()->role_id == 1)
+                    <li><a href="{{ route('admin') }}" class="nav-link">Dashboard</a></li>
+                @elseif(Auth::user() && Auth::user()->role_id == 2)
+                    <li><a href="{{ route('admin') }}" class="nav-link">Author Dashboard</a></li>
+                @endif
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">

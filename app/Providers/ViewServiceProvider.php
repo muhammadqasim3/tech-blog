@@ -27,7 +27,7 @@ class ViewServiceProvider extends ServiceProvider
     {
 //        accepts two arguments 1st is view/views and 2nd is callback function
         View::composer(['partials.meta_dynamic', 'partials.nav'], function($view){
-            $view->with('blogs', Blog::all());
+            $view->with('blogs', Blog::where('status',1));
         });
     }
 }
