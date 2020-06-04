@@ -40,7 +40,6 @@ Route::delete('blogs/{id}/delete', 'BlogController@delete')->name('blogs.delete'
 Route::resource('categories', 'CategoryController')->name('', 'categories');
 Route::resource('users', 'UserController')->name('', 'users')->middleware(['auth','admin']);
 
-
 //===============================================================ADMIN ROUTES============================================================
 //Route::middleware(['admin', 'auth', 'author'])->group(function () {
     Route::get('/dashboard', 'AdminController@index')->name('dashboard');
