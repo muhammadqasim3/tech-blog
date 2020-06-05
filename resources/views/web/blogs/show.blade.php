@@ -28,6 +28,10 @@
             <div class="col-md-12">
                 <p>{!! $blog->body !!} </p>
             </div>
+            <span><strong>Author:</strong> <a href="{{ route('users.show', $blog->user->id) }}" class="text-muted" style="text-decoration: none">
+                    {{ $blog->user->name }}</a>
+                | <strong>Posted:</strong> <span class="text-muted">{{ $blog->created_at->diffForHumans() }}</span>
+            </span>
         </article>
     </div>
 

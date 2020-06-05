@@ -10896,7 +10896,9 @@ a {
     color: #000;
 }
 
-.publish-blog-heading .draft-blog-heading {
+.jumbotron {
     color: #fff;
-    font-weight: bold;
+    border-bottom: 1px solid #d3e0e9;
+    border-radius: 0 !important;
+    background: linear-gradient(to right, #3097d4, #fff);
 }
