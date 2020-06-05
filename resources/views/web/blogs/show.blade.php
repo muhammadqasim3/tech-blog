@@ -13,6 +13,7 @@
                     @endforeach
                 </div>
 {{--                    Buttons --}}
+                @if(Auth::user()  && (Auth::user()->role_id === 1 || Auth::user()->role_id === 2 && Auth::user()->id === $blog->user->id))
                     <div class="col-md-12 mt-2">
                         <div class="btn-group">
                             <a href="{{ route('blogs.edit', $blog->id) }}" class="btn btn-primary mr-3">Edit</a>
@@ -23,6 +24,7 @@
                             </form>
                         </div>
                     </div>
+                @endif
                 </div>
 
             <div class="col-md-12">
@@ -33,6 +35,21 @@
                 | <strong>Posted:</strong> <span class="text-muted">{{ $blog->created_at->diffForHumans() }}</span>
             </span>
         </article>
+        <hr>
+{{--        DISQUS Comments--}}
+    <aside>
+        <div id="disqus_thread"></div>
+        <script>
+            (function() {
+                var d = document, s = d.createElement('script');
+                s.src = 'https://techblog-13.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+    </aside>
+
+
     </div>
 
 @endsection

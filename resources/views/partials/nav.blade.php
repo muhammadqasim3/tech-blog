@@ -11,6 +11,9 @@
             <ul class="navbar-nav">
                 <li><a href="{{ route('categories.index') }}" class="nav-link">Categories</a></li>
                 <li><a href="{{ route('blogs') }}" class="nav-link">Blogs <span class="badge bg-primary text-white">{{ $blogs->count() }}</span></a></li>
+                @if(Auth::user() && Auth::user()->role_id === 1)
+                    <li><a href="{{ route('admin.blogs') }}" class="nav-link">Manage Blogs</a></li>
+                @endif
             </ul>
 
             <!-- Right Side Of Navbar -->
